@@ -3,12 +3,12 @@ module.exports = errorHandler;
 function errorHandler(err, req, res, next) {
     if (typeof (err) === 'string') {
         // custom application error
-        return res.status(400).json({ message: err });
+        return res.status(400).json({ message: err + 'bl' });
     }
 
     if (err.name === 'ValidationError') {
         // mongoose validation error
-        return res.status(400).json({ message: err.message });
+        return res.status(400).json({ message: err.message + 'bl2' });
     }
 
     if (err.name === 'UnauthorizedError') {
@@ -17,5 +17,5 @@ function errorHandler(err, req, res, next) {
     }
 
     // default to 500 server error
-    return res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message + 'bl4' });
 }
