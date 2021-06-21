@@ -29,11 +29,12 @@ async function getAll() {
 }
 
 async function getById(id) {
-    return await User.findById(id);
+    return await User.findOne({id});
 }
 
 async function create(userParam) {
-   // validate
+    console.log(userParam)
+    // validate
     if (await User.findOne({ username: userParam.username })) {
         throw 'Username "' + userParam.username + '" is already taken';
     }
@@ -50,7 +51,7 @@ async function create(userParam) {
 }
 
 async function update(id, userParam) {
-    const user = await User.findById(id);
+    const user = await User.findOne({id});
 
     // validate
     if (!user) throw 'User not found';
